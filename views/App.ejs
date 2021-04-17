@@ -20,16 +20,20 @@
                 </div>
             </div>
             <div class="col-md-8 mt-3" style="height: 97vh;">
-                <div class="card h-100">
+                <div class="card" style="height: 90%;">
+                    <div class="card-body h-100 overflow-auto" id="scrollArea">
+                        <ul id="msgList" class=""></ul>
+                    </div>
+                </div>
+                <div class="card mt-3 mb-3">
                     <div class="card-body h-100">
                         <form id="msgForm" class="align-bottom" action="">
                             <input type="text" id="msgInput" class="form-control">
                         </form>
-                        <ul id="msgList"></ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 mt-3 mb-3">
+            <div class="col-md-2 mt-3">
                 <div class="card">
                     <div class="card-body"></div>
                 </div>

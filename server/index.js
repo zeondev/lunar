@@ -16,6 +16,8 @@ io.on('connection', (socket) => {
         io.emit('message', usr, msg);
         if (msg == "l!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)
+        } else if (msg == "l!creator") {
+            io.emit("message", "LunarBot", "The creator of Lunar is Lap")
         }
     });
 });

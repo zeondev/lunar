@@ -16,5 +16,5 @@ socket.on('message', (usr, msg) => {
     var item = document.createElement('li');
     item.textContent = `${usr}: ${msg}`;
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
 });
