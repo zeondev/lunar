@@ -16,19 +16,22 @@
         <div class="row">
             <div class="col-md-2 mt-3">
                 <div class="card">
-                    <div class="card-body"><input type="text" id="msgName" class="form-control"></div>
+                    <div class="card-body">
+                        <input type="text" id="msgName" class="form-control mt-2" placeholder="Name...">
+                        <input type="password" id="msgPassword" class="form-control mt-2" placeholder="Password...">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-3" style="height: 97vh;">
+            <div class="col-md-8 mt-3" style="height: 96vh;">
                 <div class="card" style="height: 90%;">
                     <div class="card-body h-100 overflow-auto" id="scrollArea">
-                        <ul id="msgList" class=""></ul>
+                        <ul id="msgList" class="list-group list-group-flush"></ul>
                     </div>
                 </div>
                 <div class="card mt-3 mb-3">
                     <div class="card-body h-100">
                         <form id="msgForm" class="align-bottom" action="">
-                            <input type="text" id="msgInput" class="form-control">
+                            <input type="text" id="msgInput" class="form-control" autocomplete="off">
                         </form>
                     </div>
                 </div>
