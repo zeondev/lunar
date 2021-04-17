@@ -12,14 +12,12 @@ app.get("/", (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    socket.on('message', (usr, msg, pwd) => {
-        if (pwd == "betatesters") {
-            io.emit('message', usr, msg);
-            if (msg == "l!hi") {
-                io.emit("message", "LunarBot", `Hello, ${usr}!`)
-            } else if (msg == "l!creator") {
-                io.emit("message", "LunarBot", "The creator of Lunar is Lap")
-            }
+    socket.on('message', (usr, msg) => {
+        io.emit('message', usr, msg);
+        if (msg == "l!hi") {
+            io.emit("message", "LunarBot", `Hello, ${usr}!`)
+        } else if (msg == "l!creator") {
+            io.emit("message", "LunarBot", "The creator of Lunar is Lap")
         }
     });
 });

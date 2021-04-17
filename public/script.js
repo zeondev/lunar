@@ -9,7 +9,7 @@ var password = document.querySelector("#msgPassword")
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (input.value && username.value) {
-        socket.emit('message', username.value, input.value, password.value);
+        socket.emit('message', username.value, input.value);
         input.value = '';
     }
 });
