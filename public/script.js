@@ -20,3 +20,30 @@ socket.on('message', (usr, msg) => {
     messages.appendChild(item);
     document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
 });
+
+
+var checkTheme = () => {
+    if (sessionStorage.getItem("theme") == "dark") {
+        $("body").addClass("bootstrap-dark")
+    } else if (sessionStorage.getItem("theme") == "light") {
+        $("body").addClass("bootstrap")
+    } else {
+        sessionStorage.setItem("theme", "dark")
+        checkTheme()
+    }
+}
+
+checkTheme()
+
+var switchTheme = () => {
+    if ($("body").hasClass("bootstrap-dark") && sessionStorage.getItem("theme") == "dark") {
+        sessionStorage.setItem("theme", "light")
+        $("body").removeClass("bootstrap-dark").addClass("bootstrap")
+    } else if ($("body").hasClass("bootstrap") && sessionStorage.getItem("theme") == "light") {
+        sessionStorage.setItem("theme", "dark")
+        $("body").removeClass("bootstrap").addClass("bootstrap-dark")
+    } else {
+        sessionStorage.setItem("theme", "dark")
+        switchTheme()
+    }
+}

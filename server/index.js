@@ -8,6 +8,10 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
+    res.render("Home", {})
+})
+
+app.get("/app", (req, res) => {
     res.render("App", {})
 })
 
