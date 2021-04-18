@@ -18,10 +18,12 @@ app.get("/app", (req, res) => {
 io.on('connection', (socket) => {
     socket.on('message', (usr, msg) => {
         io.emit('message', usr, msg);
-        if (msg == "l!hi") {
+        if (msg == "!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)
-        } else if (msg == "l!creator") {
+        } else if (msg == "!creator") {
             io.emit("message", "LunarBot", "The creator of Lunar is Lap")
+        } else if (msg == "!help") {
+            io.emit("message", "LunarBot", "My current commands are: !hi, !creator")
         }
     });
 });
