@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,73 @@
     <script src="https://zeon.dev/dist/js/bootstrap.min.js"></script>
     <title>Lunar</title>
 </head>
-<body>
-    
+
+<body class="bootstrap-dark">
+    <script>
+        var checkTheme = () => {
+            if (sessionStorage.getItem("theme") == "dark") {
+                $("body").addClass("bootstrap-dark")
+            } else if (sessionStorage.getItem("theme") == "light") {
+                $("body").addClass("bootstrap")
+            } else {
+                sessionStorage.setItem("theme", "dark")
+                checkTheme()
+            }
+        }
+
+        checkTheme()
+
+        var switchTheme = () => {
+            if ($("body").hasClass("bootstrap-dark") && sessionStorage.getItem("theme") == "dark") {
+                sessionStorage.setItem("theme", "light")
+                $("body").removeClass("bootstrap-dark").addClass("bootstrap")
+            } else if ($("body").hasClass("bootstrap") && sessionStorage.getItem("theme") == "light") {
+                sessionStorage.setItem("theme", "dark")
+                $("body").removeClass("bootstrap").addClass("bootstrap-dark")
+            } else {
+                sessionStorage.setItem("theme", "dark")
+                switchTheme()
+            }
+        }
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-themed">
+        <a class="navbar-brand" href="#">Lunar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app">App</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main role="main">
+        <div class="jumbotron jumbotron-fluid bg-primary text-center text-light">
+            <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">
+                Welcome to Lunar, where people hangout.
+            </p>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <a href="/app" class="btn btn-lg btn-primary">Try the app today!</a> <span
+                        class="h4 align-middle ml-2 mr-2">or</span> <a onclick="switchTheme()"
+                        class="btn btn-primary btn-lg text-light">Switch Theme</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer style="position: absolute; bottom: 0;" class="mb-1 w-100">
+        <p class="text-center">&copy; Zeon 2021</p>
+    </footer>
 </body>
+
 </html>
