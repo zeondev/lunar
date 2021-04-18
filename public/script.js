@@ -19,7 +19,7 @@ form.addEventListener('submit', (e) => {
         item.classList.add("list-group-item")
         item.classList.add("text-danger")
         messages.appendChild(item);
-        document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
+        document.querySelector("#scrollArea").scrollTo(0, document.querySelector("#scrollArea").scrollHeight);
     }
 });
 socket.on('message', (usr, msg) => {
@@ -27,7 +27,7 @@ socket.on('message', (usr, msg) => {
     item.textContent = `${usr}: ${msg}`;
     item.classList.add("list-group-item")
     messages.appendChild(item);
-    document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
+    document.querySelector("#scrollArea").scrollTo(0, document.querySelector("#scrollArea").scrollHeight);
 });
 
 
