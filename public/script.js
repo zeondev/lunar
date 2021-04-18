@@ -8,9 +8,18 @@ var password = document.querySelector("#msgPassword")
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (input.value && username.value) {
-        socket.emit('message', username.value, input.value);
-        input.value = '';
+    if (username.value) {
+        if (input.value && username.value) {
+            socket.emit('message', username.value, input.value);
+            input.value = '';
+        }
+    } else {
+        var item = document.createElement('li')
+        item.textContent = `Please add a name before chatting`;
+        item.classList.add("list-group-item")
+        item.classList.add("text-danger")
+        messages.appendChild(item);
+        document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
     }
 });
 socket.on('message', (usr, msg) => {
