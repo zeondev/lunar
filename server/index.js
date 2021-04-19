@@ -16,8 +16,8 @@ app.get("/app", (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    socket.on('message', (usr, msg) => {
-        io.emit('message', usr, msg);
+    socket.on('message', (usr, msg, time) => {
+        io.emit('message', usr, msg, time);
         if (msg == "!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)
         } else if (msg == "!creator") {
