@@ -17,10 +17,17 @@ app.get("/app", (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('message', (usr, msg, time) => {
+<<<<<<< HEAD
         if (typeof msg !== "string") {
             return
         }
         if (msg.trim() === "" || usr.trim() === "") {
+=======
+        if(typeof msg !== "string"){
+            return
+        }
+        if(msg.trim() === "" || usr.trim() === ""){
+>>>>>>> e92afd49f594a42042a16b5af290c3c4f2863c5d
             return
         }
         io.emit('message', usr, msg, time);
