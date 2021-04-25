@@ -10,6 +10,7 @@ $(document).ready(function () {
         $("#msgList li").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
+        document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     });
 });
 
