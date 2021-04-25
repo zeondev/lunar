@@ -4,8 +4,17 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
+$(document).ready(function () {
+    $("#filterMessages").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#msgList li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+
 var item = document.createElement('li')
-item.textContent = `Welcome`;
+item.innerHTML = `Welcome to Lunar.<br> The chat app of the future`;
 item.classList.add("list-group-item")
 item.classList.add("text-primary")
 messages.appendChild(item);
@@ -34,7 +43,11 @@ socket.on('message', (usr, msg, time) => {
     item.innerText = `${usr}: ${msg}`;
     item.classList.add("list-group-item")
     var item2 = document.createElement("small")
-    item2.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
+    if (new Date().getMinutes() > 9) {
+        item2.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
+    } else {
+        item2.innerHTML = `${new Date().getHours()}:0${new Date().getMinutes()}`
+    }
     item2.classList.add("text-muted")
     item2.classList.add("ml-2")
     item.appendChild(item2)
