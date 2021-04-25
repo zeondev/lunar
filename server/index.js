@@ -24,6 +24,10 @@ io.on('connection', (socket) => {
             io.emit("message", "LunarBot", "The creator of Lunar is Lap")
         } else if (msg == "!help") {
             io.emit("message", "LunarBot", "My current commands are: !hi, !creator")
+        } else if (msg == "!git") {
+            io.emit("message", "LunarBot", "https://github.com/zeondev/lunar")
+        } else if (msg == "!bug") {
+            io.emit("message", "LunarBot", "https://github.com/zeondev/lunar/issues")
         }
     });
 });
