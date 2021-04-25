@@ -82,3 +82,19 @@ var switchTheme = () => {
         switchTheme()
     }
 }
+
+var addLocalMessage = (text, classcolor) => {
+    var item = document.createElement('li')
+    item.innerHTML = `${text}`;
+    item.classList.add("list-group-item")
+    item.classList.add(`${classcolor}`)
+    messages.appendChild(item);
+    document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
+}
+
+var extensionAdd = () => {
+    var psi = document.querySelector("#pluginsScriptsInserted")
+    var script = document.createElement('script')
+    script.setAttribute("src", `${$("#addExtensionInput").val()}/plugin.js`)
+    psi.prepend(script);
+}
