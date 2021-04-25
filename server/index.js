@@ -24,20 +24,13 @@ io.on('connection', (socket) => {
             return
         }
         io.emit('message', usr, msg, time);
-        var commands = {
-            "cmds": [{
-                "cmd": "!hi"
-            }, {
-                "cmd": "!creator"
-            }]
-        }
-        console.log(JSON.parse(commands))
+        var commands = "!help, !creator, !git, !bug"
         if (msg == "!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)
         } else if (msg == "!creator") {
             io.emit("message", "LunarBot", "The creator of Lunar is Lap")
         } else if (msg == "!help") {
-            io.emit("message", "LunarBot", `My current commands are: ${JSON.parse(commands)}`)
+            io.emit("message", "LunarBot", `My current commands are: ${commands}`)
         } else if (msg == "!git") {
             io.emit("message", "LunarBot", "https://github.com/zeondev/lunar")
         } else if (msg == "!bug") {
