@@ -4,6 +4,13 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
+var item = document.createElement('li')
+item.textContent = `Welcome`;
+item.classList.add("list-group-item")
+item.classList.add("text-primary")
+messages.appendChild(item);
+document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -19,7 +26,7 @@ form.addEventListener('submit', (e) => {
         item.classList.add("list-group-item")
         item.classList.add("text-danger")
         messages.appendChild(item);
-        document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
+        document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     }
 });
 socket.on('message', (usr, msg, time) => {
@@ -32,7 +39,7 @@ socket.on('message', (usr, msg, time) => {
     item2.classList.add("ml-2")
     item.appendChild(item2)
     messages.appendChild(item);
-    document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
+    document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 });
 
 
