@@ -25,7 +25,7 @@ document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrol
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (username.value) {
-        if (input.value && username.value) {
+        if (input.value) {
             var d = new Date();
             socket.emit('message', username.value, input.value, ``);
             input.value = '';
