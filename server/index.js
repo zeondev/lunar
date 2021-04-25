@@ -17,7 +17,7 @@ app.get("/app", (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('message', (usr, msg, time) => {
-        if(msg.trim() === ""){
+        if(msg.trim() === "" || usr.trim() === ""){
             return
         }
         io.emit('message', usr, msg, time);
