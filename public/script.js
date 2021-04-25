@@ -3,14 +3,14 @@ var messages = document.querySelector('#msgList');
 var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
-var d = new Date();
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (username.value) {
         if (input.value && username.value) {
-            socket.emit('message', username.value, input.value, `${d.getHours()}:${d.getMinutes()}`);
+            var d = new Date();
+            socket.emit('message', username.value, input.value, ``);
             input.value = '';
         }
     } else {
@@ -24,8 +24,13 @@ form.addEventListener('submit', (e) => {
 });
 socket.on('message', (usr, msg, time) => {
     var item = document.createElement('li')
-    item.textContent = `${usr}: ${msg} - ${time}`;
+    item.innerText = `${usr}: ${msg}`;
     item.classList.add("list-group-item")
+    var item2 = document.createElement("small")
+    item2.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
+    item2.classList.add("text-muted")
+    item2.classList.add("ml-2")
+    item.appendChild(item2)
     messages.appendChild(item);
     document.querySelector("#scrollArea").scrollTo(0, document.body.scrollHeight);
 });
