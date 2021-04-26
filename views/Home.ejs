@@ -16,12 +16,12 @@
 <body class="bootstrap-dark">
     <script>
         var checkTheme = () => {
-            if (sessionStorage.getItem("theme") == "dark") {
+            if (localStorage.getItem("theme") == "dark") {
                 $("body").addClass("bootstrap-dark")
-            } else if (sessionStorage.getItem("theme") == "light") {
+            } else if (localStorage.getItem("theme") == "light") {
                 $("body").addClass("bootstrap")
             } else {
-                sessionStorage.setItem("theme", "dark")
+                localStorage.setItem("theme", "dark")
                 checkTheme()
             }
         }
@@ -29,14 +29,14 @@
         checkTheme()
 
         var switchTheme = () => {
-            if ($("body").hasClass("bootstrap-dark") && sessionStorage.getItem("theme") == "dark") {
-                sessionStorage.setItem("theme", "light")
+            if ($("body").hasClass("bootstrap-dark") && localStorage.getItem("theme") == "dark") {
+                localStorage.setItem("theme", "light")
                 $("body").removeClass("bootstrap-dark").addClass("bootstrap")
-            } else if ($("body").hasClass("bootstrap") && sessionStorage.getItem("theme") == "light") {
-                sessionStorage.setItem("theme", "dark")
+            } else if ($("body").hasClass("bootstrap") && localStorage.getItem("theme") == "light") {
+                localStorage.setItem("theme", "dark")
                 $("body").removeClass("bootstrap").addClass("bootstrap-dark")
             } else {
-                sessionStorage.setItem("theme", "dark")
+                localStorage.setItem("theme", "dark")
                 switchTheme()
             }
         }
