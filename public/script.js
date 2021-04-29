@@ -4,10 +4,10 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
-$(document).ready(function() {
-    $("#filterMessages").on("keyup", function() {
+$(document).ready(function () {
+    $("#filterMessages").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("#msgList li").filter(function() {
+        $("#msgList li").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
@@ -18,6 +18,7 @@ var item = document.createElement('li')
 item.innerHTML = `Welcome to Lunar.<br> The chat app of the future`;
 item.classList.add("list-group-item")
 item.classList.add("text-primary")
+item.id = `-welcometext-`
 messages.appendChild(item);
 document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 
@@ -34,6 +35,7 @@ form.addEventListener('submit', (e) => {
         var item = document.createElement('li')
         item.textContent = `Please add a name before chatting`;
         item.classList.add("list-group-item")
+        item.id = `-AddAName-`
         item.classList.add("text-danger")
         messages.appendChild(item);
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
@@ -43,6 +45,7 @@ socket.on('message', (usr, msg, time) => {
     var item = document.createElement('li')
     item.innerText = `${usr}: ${msg}`;
     item.classList.add("list-group-item")
+    item.id = `-${msg}-`
     var item2 = document.createElement("small")
     if (new Date().getMinutes() > 9) {
         item2.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
@@ -88,6 +91,7 @@ var addLocalMessage = (text, classcolor) => {
     item.innerHTML = `${text}`;
     item.classList.add("list-group-item")
     item.classList.add(`${classcolor}`)
+    item.id = `-${text}-`
     messages.appendChild(item);
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 }
