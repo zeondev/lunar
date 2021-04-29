@@ -4,10 +4,10 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
-$(document).ready(function () {
-    $("#filterMessages").on("keyup", function () {
+$(document).ready(function() {
+    $("#filterMessages").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#msgList li").filter(function () {
+        $("#msgList li").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
@@ -91,10 +91,58 @@ var addLocalMessage = (text, classcolor) => {
     messages.appendChild(item);
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 }
-
+var extensions = [];
 var extensionAdd = () => {
-    var psi = document.querySelector("#pluginsScriptsInserted")
-    var script = document.createElement('script')
-    script.setAttribute("src", `${$("#addExtensionInput").val()}/plugin.js`)
-    psi.prepend(script);
+
+    var request = new window.XMLHttpRequest();
+    var extension = `${$("#addExtensionInput").val()}`;
+
+    request.open('GET', extension)
+
+    request.send()
+
+    request.onreadystatechange = (ev) => {
+        if (request.readyState === 4) {
+            if (request.status === 404) {
+                //error: the extension was not found
+                // display the error    
+                console.log("error: the extension was not found")
+            } else if (request.responseText !== "") {
+                var psi = document.querySelector("#pluginsScriptsInserted")
+                var script = document.createElement('script')
+
+                window.addEventListener("error", (error) => {
+                    if (extensions.includes(error.filename)) {
+                        error.preventDefault();
+                        // extension code error
+                        // display it 
+                        console.log("error: " + error.message)
+                    }
+
+                })
+                script.type = 'text/javascript'
+                var code = `try{
+${request.responseText};
+}
+catch(error){
+    // write here code that will execute if there is an error in the plugin 
+    // error variable is the plugin error
+    console.log("plugin error: " + error)
+}`
+                try {
+                    script.appendChild(document.createTextNode(code))
+
+
+                } catch (error) {
+                    script.text = code
+                }
+                extensions.push(request.responseURL)
+                psi.prepend(script)
+            } else {
+                // error: the plugin could not be loaded
+                // display the error
+                console.log("error: the plugin could not be loaded")
+            }
+        }
+    }
 }
