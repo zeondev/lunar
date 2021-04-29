@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap-dark.min.css">
-    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap.min.css">
+    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap-dark.min.css" id="linkToCssDark">
+    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap.min.css" id="linkToCss">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://zeon.dev/dist/js/bootstrap.min.js"></script>
+    <script src="https://zeon.dev/dist/js/bootstrap.min.js" id="linkToCssJS"></script>
     <script src="/socket.io/socket.io.js"></script>
     <title>Lunar</title>
 </head>
@@ -44,8 +44,14 @@
                             placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
-                        <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL"><a
-                            class="btn btn-primary text-light" onclick="extensionAdd()">Add</a>
+                        <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
+                        <a class="btn btn-primary text-light" onclick="extensionAdd()">
+                            Add
+                        </a>
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
+                            class="align-right btn btn-primary">
+                            LunarEssentials
+                        </a>
                     </div>
                 </div>
                 <div id="pluginMenu">
