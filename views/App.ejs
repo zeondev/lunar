@@ -20,7 +20,15 @@
             <div class="col-md-2 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="msgName" class="form-control mt-2" placeholder="Name...">
+                        <input type="text" id="msgName" class="form-control mt-2" placeholder="Name..."
+                            onkeyup="saveUsername()">
+                        <script>
+                            var saveUsername = () => {
+                                localStorage.setItem("name", `${$("#msgName").val()}`)
+                                return true;
+                            }
+                            $("#msgName").val(localStorage.getItem("name"))
+                        </script>
                     </div>
                 </div>
             </div>
