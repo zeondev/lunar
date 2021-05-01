@@ -15,15 +15,21 @@ app.get("/app", (req, res) => {
     res.render("App", {})
 })
 
+app.get("/store", (req, res) => {
+    res.render("PluginStore", {})
+})
+
 io.on('connection', (socket) => {
-    socket.on('message', (usr, msg, time) => {
+    socket.join("global")
+
+    socket.on('message', (usr, msg) => {
         if (typeof msg !== "string") {
             return
         }
         if (msg.trim() === "" || usr.trim() === "") {
             return
         }
-        io.emit('message', usr, msg, time);
+        io.emit('message', usr, msg);
         var commands = "!help, !creator, !git, !bug"
         if (msg == "!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)

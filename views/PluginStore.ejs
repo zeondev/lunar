@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap-dark.min.css" id="linkToCssDark">
+    <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap.min.css" id="linkToCss">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://zeon.dev/dist/js/bootstrap.min.js" id="linkToCssJS"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Lunar</title>
+</head>
+
+<body class="bootstrap-dark">
+    <script>
+        var checkTheme = () => {
+            if (localStorage.getItem("theme") == "dark") {
+                $("body").addClass("bootstrap-dark")
+            } else if (localStorage.getItem("theme") == "light") {
+                $("body").addClass("bootstrap")
+            } else {
+                localStorage.setItem("theme", "dark")
+                checkTheme()
+            }
+        }
+
+        checkTheme()
+
+        var switchTheme = () => {
+            if ($("body").hasClass("bootstrap-dark") && localStorage.getItem("theme") == "dark") {
+                localStorage.setItem("theme", "light")
+                $("body").removeClass("bootstrap-dark").addClass("bootstrap")
+            } else if ($("body").hasClass("bootstrap") && localStorage.getItem("theme") == "light") {
+                localStorage.setItem("theme", "dark")
+                $("body").removeClass("bootstrap").addClass("bootstrap-dark")
+            } else {
+                localStorage.setItem("theme", "dark")
+                switchTheme()
+            }
+        }
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-themed">
+        <a class="navbar-brand" href="#">Lunar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app">App</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main role="main mt-3">
+        <div class="container-fluid mt-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Plugin Link" id="ltp">
+                <div class="input-group-append">
+                    <span class="input-group-text" onclick="searchPlugin();" id="basic-addon2">Search</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <img src="" id="pluginImg" width="250">
+                <h2 id="pluginTitle"></h2>
+                <p id="pluginDescription"></p>
+                <script>
+                    var searchPlugin = () => {
+                        $.getJSON(`${$("#ltp").val()}/lunar.json`, (data) => {
+                            $("#pluginImg").attr("src", data.img)
+                            $("#pluginTitle").text(data.title)
+                            $("#pluginDescription").text(data.description)
+                        })
+                    }
+                </script>
+            </div>
+        </div>
+    </main>
+    <footer class="mb-1 w-100 mt-3">
+        <p class="text-center text-muted">&copy; Zeon 2021</p>
+    </footer>
+    <script>
+        var checkTheme = () => {
+            if (localStorage.getItem("theme") == "dark") {
+                $("body").addClass("bootstrap-dark")
+            } else if (localStorage.getItem("theme") == "light") {
+                $("body").addClass("bootstrap")
+            } else {
+                localStorage.setItem("theme", "dark")
+                checkTheme()
+            }
+        }
+
+        checkTheme()
+
+        var switchTheme = () => {
+            if ($("body").hasClass("bootstrap-dark") && localStorage.getItem("theme") == "dark") {
+                localStorage.setItem("theme", "light")
+                $("body").removeClass("bootstrap-dark").addClass("bootstrap")
+            } else if ($("body").hasClass("bootstrap") && localStorage.getItem("theme") == "light") {
+                localStorage.setItem("theme", "dark")
+                $("body").removeClass("bootstrap").addClass("bootstrap-dark")
+            } else {
+                localStorage.setItem("theme", "dark")
+                switchTheme()
+            }
+        }
+    </script>
+</body>
+
+</html>
