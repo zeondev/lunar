@@ -7,7 +7,7 @@ var username = document.querySelector('#msgName');
 $(document).ready(function () {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
-    var WarningMessageConsoleLog2 = "color: white; font-size: large; margin-top: 5px;"
+    var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
     console.log("%cWait a minute!\n%cDo not paste or enter anything in here. If someone told you to paste something here, they may be trying to scam/hack you.\nIf you do know what your doing you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
     $("#filterMessages").on("keyup", function () {
