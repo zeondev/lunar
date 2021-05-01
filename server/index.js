@@ -20,8 +20,6 @@ app.get("/store", (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    socket.join("global")
-
     socket.on('message', (usr, msg) => {
         if (typeof msg !== "string") {
             return
