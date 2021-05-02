@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://zeon.dev/dist/js/bootstrap.min.js" id="linkToCssJS"></script>
     <script src="https://kit.fontawesome.com/d6353791c2.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <title>Lunar</title>
 </head>
@@ -20,7 +22,7 @@
             <div class="col-md-2 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="msgName" class="form-control mt-2" placeholder="Name..."
+                        <input type="email" id="msgName" class="form-control mt-2" placeholder="Name..."
                             onkeyup="saveUsername()">
                         <script>
                             var saveUsername = () => {
