@@ -3,6 +3,10 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
+var emojisData = require("./compiler/out/emojisData")
+
+const urlRegex = /(?<=\s|^)((https?:)?\/\/)?(www\.)?[-a-zA-Z0-9:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)(?=\s|$)/g
+const urlNewDomainRegex = /(https?:)?\/\//g
 
 app.set("view engine", "ejs")
 app.use(express.static("public"))
@@ -21,12 +25,14 @@ app.get("/store", (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('message', (usr, msg) => {
-        if (typeof msg !== "string") {
+        if (typeof usr !== "string" || typeof msg !== "string") {
             return
         }
         if (msg.trim() === "" || usr.trim() === "") {
             return
         }
+        msg = emojifyMessage(urlifyMessage(removeHtml(msg)))
+
         io.emit('message', usr, msg);
         var commands = "!help, !creator, !git, !bug"
         if (msg == "!hi") {
@@ -36,12 +42,35 @@ io.on('connection', (socket) => {
         } else if (msg == "!help") {
             io.emit("message", "LunarBot", `My current commands are: ${commands}`)
         } else if (msg == "!git") {
-            io.emit("message", "LunarBot", "https://github.com/zeondev/lunar")
+            io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar" target="blank">https://github.com/zeondev/lunar</a>`)
         } else if (msg == "!bug") {
-            io.emit("message", "LunarBot", "https://github.com/zeondev/lunar/issues")
+            io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar/issues" target="blank">https://github.com/zeondev/lunar/issues</a>`)
         }
     });
 });
+
+var emojifyMessage = (message) => {
+    for (var i = 0; i < emojisData.length; i++) {
+        message = message.replace(new RegExp(emojisData[i].regex, "g"), emojisData[i].emoji)
+    }
+    return message
+}
+
+var urlifyMessage = (message) => {
+    return message.replace(urlRegex, (url) => {
+        var displayUrl = url
+        if (!urlNewDomainRegex.test(url)) {
+            url = "//" + url
+        }
+        return '<a href="' + url + '" target="blank">' + displayUrl + '</a>'
+    })
+}
+
+var removeHtml = (text) => {
+    return text.replace(/>/g, "&gt;").replace(/</g, "&lt;")
+}
+
+
 
 server.listen(port, () => {
     console.log('Server listening at port %d', port);
