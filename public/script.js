@@ -4,15 +4,15 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
     var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
     console.log("%cWait a minute!\n%cDo not paste or enter anything in here. If someone told you to paste something here, they may be trying to scam/hack you.\nIf you do know what your doing you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
-    $("#filterMessages").on("keyup", function () {
+    $("#filterMessages").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#msgList li").filter(function () {
+        $("#msgList li").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
@@ -46,21 +46,37 @@ form.addEventListener('submit', (e) => {
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     }
 });
-socket.on('message', (usr, msg, time) => {
-    var item = document.createElement('li')
-    item.innerText = `${usr}: ${msg}`;
-    item.classList.add("list-group-item")
-    item.id = `-${msg}-`
-    var item2 = document.createElement("small")
+socket.on('message', (usr, msg) => {
+    var message = document.createElement('li')
+    message.classList.add("list-group-item")
+    message.id = `-${msg}-`
+
+    var messageUsername = document.createElement('span')
+    messageUsername.id = "messsageUsername"
+    messageUsername.innerText = usr
+    message.appendChild(messageUsername)
+
+    var messageColon = document.createElement('span')
+    messageColon.id = "messageColon"
+    messageColon.innerText = ": "
+    message.appendChild(messageColon)
+
+    var messageContent = document.createElement('span')
+    messageContent.id = "messsageUsername"
+    messageContent.innerHTML = msg
+    message.appendChild(messageContent)
+
+    var messageTimeStamp = document.createElement("small")
     if (new Date().getMinutes() > 9) {
-        item2.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
+        messageTimeStamp.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`
     } else {
-        item2.innerHTML = `${new Date().getHours()}:0${new Date().getMinutes()}`
+        messageTimeStamp.innerHTML = `${new Date().getHours()}:0${new Date().getMinutes()}`
     }
-    item2.classList.add("text-muted")
-    item2.classList.add("ml-2")
-    item.appendChild(item2)
-    messages.appendChild(item);
+    messageTimeStamp.classList.add("text-muted")
+    messageTimeStamp.classList.add("ml-2")
+    message.appendChild(messageTimeStamp)
+
+    messages.appendChild(message);
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 });
 
