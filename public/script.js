@@ -52,7 +52,7 @@ socket.on('message', (usr, msg) => {
     message.id = `-${msg}-`
 
     var messageUsername = document.createElement('span')
-    messageUsername.id = "messsageUsername"
+    messageUsername.id = "messageUsername"
     messageUsername.innerText = usr
     message.appendChild(messageUsername)
 
