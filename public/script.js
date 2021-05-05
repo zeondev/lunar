@@ -62,7 +62,7 @@ socket.on('message', (usr, msg) => {
     message.appendChild(messageColon)
 
     var messageContent = document.createElement('span')
-    messageContent.id = "messsageContent"
+    messageContent.id = "messageContent"
     messageContent.innerHTML = msg
     message.appendChild(messageContent)
 
