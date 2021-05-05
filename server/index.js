@@ -28,7 +28,9 @@ io.on('connection', (socket) => {
         if (typeof usr !== "string" || typeof msg !== "string") {
             return
         }
-        if (msg.trim() === "" || usr.trim() === "") {
+        msg = msg.trim()
+        usr = usr.trim()
+        if (msg === "" || usr === "") {
             return
         }
         msg = emojifyMessage(urlifyMessage(removeHtml(msg)))
