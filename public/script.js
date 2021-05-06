@@ -4,6 +4,8 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
+var searchValue = "";
+
 $(document).ready(function() {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
@@ -11,9 +13,10 @@ $(document).ready(function() {
     console.log("%cWait a minute!\n%cDo not paste or enter anything in here. If someone told you to paste something here, they may be trying to scam/hack you.\nIf you do know what your doing you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
     $("#filterMessages").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
+        searchValue = $(this).val().toLowerCase();
+        var messageContentElement = this.querySelector("#messageContent")
         $("#msgList li").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(messageContentElement).text().toLowerCase().indexOf(searchValue) > -1)
         });
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     });
@@ -75,7 +78,8 @@ socket.on('message', (usr, msg) => {
     messageTimeStamp.classList.add("text-muted")
     messageTimeStamp.classList.add("ml-2")
     message.appendChild(messageTimeStamp)
-
+    
+    $(message).toggle($(messageContent).text().toLowerCase().indexOf(searchValue) > -1)
     messages.appendChild(message);
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 });
