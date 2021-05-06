@@ -5,6 +5,7 @@ var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 var emojisData = require("./compiler/out/emojisData")
 
+
 const urlRegex = /(?<=\s|^)((https?:)?\/\/)?(www\.)?[-a-zA-Z0-9:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)(?=\s|$)/g
 const urlNewDomainRegex = /(https?:)?\/\//g
 

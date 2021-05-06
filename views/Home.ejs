@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://zeon.dev/dist/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <title>Lunar</title>
 </head>
 
@@ -92,6 +93,7 @@
                     var socket = io('/')
                     var messages = document.querySelector("#msgList")
                     socket.on('message', (usr, msg, time) => {
+                        twemoji.parse(document.body);
                         var tCT = document.getElementById('tempChatThingy');
                         if (tCT !== undefined) {
                             tCT.remove();
@@ -106,7 +108,7 @@
                             item2.innerHTML = `${new Date().getHours()}:0${new Date().getMinutes()}`
                         }
                         item2.classList.add("text-muted")
-                        item2.classList.add("ml-2")
+                        item2.classList.add("ml-1")
                         item.appendChild(item2)
                         messages.appendChild(item);
                         document.querySelector("#scrollArea").scrollTop = document.querySelector(

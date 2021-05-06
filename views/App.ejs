@@ -14,17 +14,17 @@
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <title>Lunar</title>
 </head>
 
 <body class="bootstrap-dark">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 mt-3">
+            <div class="col-sm col-lg-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="msgName" class="form-control mt-2" placeholder="Name..."
-                            onkeyup="saveUsername()">
+                        <input type="name" autocomplete="false" id="msgName" class="form-control mt-2" placeholder="Name..." onkeyup="saveUsername()">
                         <script>
                             var saveUsername = () => {
                                 localStorage.setItem("name", `${$("#msgName").val()}`)
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-3" style="height: 96vh;">
+            <div class="col-lg mt-3" style="height: 96vh;">
                 <div class="card" style="height: 90%;">
                     <div class="card-body h-100 p-0 overflow-auto" id="scrollArea">
                         <ul id="msgList" class="list-group list-group-flush"></ul>
@@ -48,19 +48,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 mt-3">
+            <div class="col-md-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="filterMessages" class="form-control mb-2"
-                            placeholder="Search the conversation...">
+                        <input type="text" id="filterMessages" class="form-control mb-2" placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
                         <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
                         <a class="btn btn-primary text-light" onclick="extensionAdd()">
                             Add
                         </a>
-                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
-                            class="align-right btn btn-primary">
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();" class="align-right btn btn-primary">
                             LunarEssentials
                         </a>
                     </div>

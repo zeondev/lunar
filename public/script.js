@@ -76,12 +76,13 @@ socket.on('message', (usr, msg) => {
         messageTimeStamp.innerHTML = `${new Date().getHours()}:0${new Date().getMinutes()}`
     }
     messageTimeStamp.classList.add("text-muted")
-    messageTimeStamp.classList.add("ml-2")
+    messageTimeStamp.classList.add("ml-1")
     message.appendChild(messageTimeStamp)
-    
+
     $(message).toggle($(messageContent).text().toLowerCase().indexOf(searchValue) > -1)
     messages.appendChild(message);
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
+    twemoji.parse(document.body);
 });
 
 
