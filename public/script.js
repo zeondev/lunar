@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
     var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
-    console.log("%cWait a minute!\n%cDo not paste or enter anything in here. If someone told you to paste something here, they may be trying to scam/hack you.\nIf you do know what your doing you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
+    console.log("%cHold up!\n%cDo not paste or enter anything in here. If someone has told you to paste something here, they may be trying to scam or hack you.\nIf you do know what you're doing, you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
     $("#filterMessages").on("keyup", function() {
         searchValue = $(this).val().toLowerCase();
@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 
 var item = document.createElement('li')
-item.innerHTML = `Welcome to Lunar.<br> The chat app of the future`;
+item.innerHTML = `Welcome to Lunar, the chat app of the future.`;
 item.classList.add("list-group-item")
 item.classList.add("text-primary")
 item.id = `-welcometext-`
@@ -41,7 +41,7 @@ form.addEventListener('submit', (e) => {
         }
     } else {
         var item = document.createElement('li')
-        item.textContent = `Please add a name before chatting`;
+        item.textContent = `Please add a name before chatting...`;
         item.classList.add("list-group-item")
         item.id = `-AddAName-`
         item.classList.add("text-danger")
@@ -135,7 +135,7 @@ var extensionAdd = () => {
             if (request.status === 404) {
                 //error: the extension was not found
                 // display the error    
-                console.log("error: the extension was not found")
+                console.log("Error: The extension was not found.")
             } else if (request.responseText !== "") {
                 var psi = document.querySelector("#pluginsScriptsInserted")
                 var script = document.createElement('script')
@@ -145,7 +145,7 @@ var extensionAdd = () => {
                         error.preventDefault();
                         // extension code error
                         // display it 
-                        console.log("error: " + error.message)
+                        console.log("Error: " + error.message)
                     }
 
                 })
@@ -170,7 +170,7 @@ catch(error){
             } else {
                 // error: the plugin could not be loaded
                 // display the error
-                console.log("error: the plugin could not be loaded")
+                console.log("Error: The plugin could not be loaded!")
             }
         }
     }
