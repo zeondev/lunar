@@ -4,17 +4,28 @@ var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
 
+
+$(".container-fluid").hide()
+
+if (localStorage.getItem("name")) {
+    $(".container-fluid").show()
+    $(".addAName").hide()
+} else {
+    $(".addAName").show()
+    $(".container-fluid").hide()
+}
+
 var searchValue = "";
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
     var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
     console.log("%cHold up!\n%cDo not paste or enter anything in here. If someone has told you to paste something here, they may be trying to scam or hack you.\nIf you do know what you're doing, you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
-    $("#filterMessages").on("keyup", function() {
+    $("#filterMessages").on("keyup", function () {
         searchValue = $(this).val().toLowerCase();
-        $("#msgList li").filter(function() {
+        $("#msgList li").filter(function () {
             var messageContentElement = this.querySelector("#messageContent")
             $(this).toggle($(messageContentElement).text().toLowerCase().indexOf(searchValue) > -1)
         });
