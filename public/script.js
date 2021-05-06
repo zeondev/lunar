@@ -14,8 +14,8 @@ $(document).ready(function() {
 
     $("#filterMessages").on("keyup", function() {
         searchValue = $(this).val().toLowerCase();
-        var messageContentElement = this.querySelector("#messageContent")
         $("#msgList li").filter(function() {
+            var messageContentElement = this.querySelector("#messageContent")
             $(this).toggle($(messageContentElement).text().toLowerCase().indexOf(searchValue) > -1)
         });
         document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
