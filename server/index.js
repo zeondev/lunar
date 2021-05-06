@@ -25,28 +25,30 @@ app.get("/store", (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('message', (usr, msg) => {
-        if (typeof usr !== "string" || typeof msg !== "string") {
-            return
-        }
-        msg = msg.trim()
-        usr = usr.trim()
-        if (msg === "" || usr === "") {
-            return
-        }
-        msg = emojifyMessage(urlifyMessage(removeHtml(msg)))
+        if (usr.length < 50 && msg.length < 2000) {
+            if (typeof usr !== "string" || typeof msg !== "string") {
+                return
+            }
+            msg = msg.trim()
+            usr = usr.trim()
+            if (msg === "" || usr === "") {
+                return
+            }
+            msg = emojifyMessage(urlifyMessage(removeHtml(msg)))
 
-        io.emit('message', usr, msg);
-        var commands = "!help, !creator, !git, !bug"
-        if (msg == "!hi") {
-            io.emit("message", "LunarBot", `Hello, ${usr}!`)
-        } else if (msg == "!creator") {
-            io.emit("message", "LunarBot", "The creator of Lunar is Lap.")
-        } else if (msg == "!help") {
-            io.emit("message", "LunarBot", `My current commands are: ${commands}`)
-        } else if (msg == "!git") {
-            io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar" target="blank">https://github.com/zeondev/lunar</a>`)
-        } else if (msg == "!bug") {
-            io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar/issues" target="blank">https://github.com/zeondev/lunar/issues</a>`)
+            io.emit('message', usr, msg);
+            var commands = "!help, !creator, !git, !bug"
+            if (msg == "!hi") {
+                io.emit("message", "LunarBot", `Hello, ${usr}!`)
+            } else if (msg == "!creator") {
+                io.emit("message", "LunarBot", "The creator of Lunar is Lap.")
+            } else if (msg == "!help") {
+                io.emit("message", "LunarBot", `My current commands are: ${commands}`)
+            } else if (msg == "!git") {
+                io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar" target="blank">https://github.com/zeondev/lunar</a>`)
+            } else if (msg == "!bug") {
+                io.emit("message", "LunarBot", `<a href="https://github.com/zeondev/lunar/issues" target="blank">https://github.com/zeondev/lunar/issues</a>`)
+            }
         }
     });
 });
