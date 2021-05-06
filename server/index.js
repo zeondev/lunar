@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
         if (msg == "!hi") {
             io.emit("message", "LunarBot", `Hello, ${usr}!`)
         } else if (msg == "!creator") {
-            io.emit("message", "LunarBot", "The creator of Lunar is Lap")
+            io.emit("message", "LunarBot", "The creator of Lunar is Lap.")
         } else if (msg == "!help") {
             io.emit("message", "LunarBot", `My current commands are: ${commands}`)
         } else if (msg == "!git") {
