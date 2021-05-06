@@ -15,6 +15,16 @@ if (localStorage.getItem("name")) {
     $(".container-fluid").hide()
 }
 
+function checkUsername() {
+    if (localStorage.getItem("name")) {
+        $(".container-fluid").show()
+        $(".addAName").hide()
+    } else {
+        $(".addAName").show()
+        $(".container-fluid").hide()
+    }
+}
+
 var searchValue = "";
 
 $(document).ready(function () {
