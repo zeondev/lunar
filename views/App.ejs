@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap-dark.min.css" id="linkToCssDark">
     <link rel="stylesheet" href="https://zeon.dev/dist/css/toggle-bootstrap.min.css" id="linkToCss">
+    <link rel="stylesheet" href="/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://zeon.dev/dist/js/bootstrap.min.js" id="linkToCssJS"></script>
     <script src="https://kit.fontawesome.com/d6353791c2.js"></script>
@@ -22,8 +23,7 @@
             <div class="col-md-2 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="email" id="msgName" class="form-control mt-2" placeholder="Name..."
-                            onkeyup="saveUsername()">
+                        <input type="email" id="msgName" class="form-control mt-2" placeholder="Name..." onkeyup="saveUsername()">
                         <script>
                             var saveUsername = () => {
                                 localStorage.setItem("name", `${$("#msgName").val()}`)
@@ -50,16 +50,14 @@
             <div class="col-md-2 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="filterMessages" class="form-control mb-2"
-                            placeholder="Search the conversation...">
+                        <input type="text" id="filterMessages" class="form-control mb-2" placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
                         <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
                         <a class="btn btn-primary text-light" onclick="extensionAdd()">
                             Add
                         </a>
-                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
-                            class="align-right btn btn-primary">
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();" class="align-right btn btn-primary">
                             LunarEssentials
                         </a>
                     </div>
