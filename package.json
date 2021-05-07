@@ -1,28 +1,29 @@
 {
-  "name": "lunar",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server/index.js",
-    "test": "nodemon server/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zeondev/lunar.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zeondev/lunar/issues"
-  },
-  "homepage": "https://github.com/zeondev/lunar#readme",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "nodemon": "^2.0.7",
-    "socket.io": "^4.0.1"
-  }
+    "name": "lunar",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server/index.js",
+        "test": "nodemon server/index.js",
+        "compileEmojis": "node server/compiler/src/emojisCompiler.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zeondev/lunar.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/zeondev/lunar/issues"
+    },
+    "homepage": "https://github.com/zeondev/lunar#readme",
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "fs": "0.0.1-security",
+        "nodemon": "^2.0.7",
+        "socket.io": "^4.0.1"
+    }
 }
