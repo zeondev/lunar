@@ -29,3 +29,7 @@ li.list-group-item small {
     margin-left: 5px;
     word-wrap: anywhere;
 }
+
+textarea.msgTextarea {
+    resize: none;
+}
