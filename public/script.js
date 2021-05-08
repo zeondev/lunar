@@ -29,6 +29,36 @@ function checkUsername() {
     }
 }
 
+input.addEventListener("keydown", (e) => {
+    const keyCode = e.which || e.keyCode;
+    if (keyCode === 13 && !e.shiftKey) {
+        e.preventDefault();
+        if (username.value) {
+            if (input.value) {
+                socket.emit('message', username.value, input.value, ``);
+                input.value = '';
+            }
+        } else {
+            var item = document.createElement('li')
+            item.textContent = `Please add a name before chatting...`;
+            item.classList.add("list-group-item")
+            item.id = `-AddAName-`
+            item.classList.add("text-danger")
+            messages.appendChild(item);
+            document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
+        }
+    }
+    var currentRows = input.value.split("\n").length;
+    if (keyCode === 13 && e.shiftKey) {
+        currentRows++;
+    }
+    if (currentRows <= 5) {
+        input.rows = currentRows;
+    } else {
+        input.rows = 5;
+    }
+})
+
 var searchValue = "";
 
 $(document).ready(function() {
@@ -55,25 +85,6 @@ item.id = `-welcometext-`
 messages.appendChild(item);
 document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (username.value) {
-        if (input.value) {
-            var d = new Date();
-            socket.emit('message', username.value, input.value, ``);
-            input.value = '';
-        }
-    } else {
-        var item = document.createElement('li')
-        item.textContent = `Please add a name before chatting...`;
-        item.classList.add("list-group-item")
-        item.id = `-AddAName-`
-        item.classList.add("text-danger")
-        messages.appendChild(item);
-        document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
-    }
-});
 socket.on('message', (usr, msg) => {
     var message = document.createElement('li')
     message.classList.add("list-group-item")
@@ -91,7 +102,7 @@ socket.on('message', (usr, msg) => {
 
     var messageContent = document.createElement('span')
     messageContent.id = "messageContent"
-    messageContent.innerHTML = msg
+    messageContent.innerHTML = msg.replaceAll("\n", "<br>")
     message.appendChild(messageContent)
 
     var messageTimeStamp = document.createElement("small")
@@ -109,6 +120,8 @@ socket.on('message', (usr, msg) => {
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     twemoji.parse(document.body);
 });
+
+
 
 
 var checkTheme = () => {
