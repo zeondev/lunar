@@ -3,39 +3,43 @@ var messages = document.querySelector('#msgList');
 var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
 var username = document.querySelector('#msgName');
+var loginScreen = $("div#login-screen");
+var registerScreen = $("div#register-screen");
+var chatScreen = $("div#chat-screen");
 
 
-$(".container-fluid").hide()
+chatScreen.hide()
+registerScreen.hide()
 
 if (localStorage.getItem("name")) {
-    $(".container-fluid").show()
-    $(".addAName").hide()
+    chatScreen.show()
+    loginScreen.hide()
 } else {
-    $(".addAName").show()
-    $(".container-fluid").hide()
+    loginScreen.show()
+    chatScreen.hide()
 }
 
 function checkUsername() {
     if (localStorage.getItem("name")) {
-        $(".container-fluid").show()
-        $(".addAName").hide()
+        chatScreen.show()
+        loginScreen.hide()
     } else {
-        $(".addAName").show()
-        $(".container-fluid").hide()
+        loginScreen.show()
+        chatScreen.hide()
     }
 }
 
 var searchValue = "";
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
     var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
     console.log("%cHold up!\n%cDo not paste or enter anything in here. If someone has told you to paste something here, they may be trying to scam or hack you.\nIf you do know what you're doing, you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
-    $("#filterMessages").on("keyup", function () {
+    $("#filterMessages").on("keyup", function() {
         searchValue = $(this).val().toLowerCase();
-        $("#msgList li").filter(function () {
+        $("#msgList li").filter(function() {
             var messageContentElement = this.querySelector("#messageContent")
             $(this).toggle($(messageContentElement).text().toLowerCase().indexOf(searchValue) > -1)
         });

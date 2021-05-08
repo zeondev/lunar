@@ -17,26 +17,37 @@
 </head>
 
 <body class="bootstrap-dark">
-    <div class="addAName text-center" style="padding-left: 15%; padding-right: 15%; padding-top: 40vh; ">
+    <div id="login-screen" class="text-center" style="padding-left: 15%; padding-right: 15%; padding-top: 40vh; ">
         <img src="/assets/lunar.png" style="width: 5%; height: 5%;">
         <h1>Lunar</h1>
         <div class="card">
             <div class="card-body">
-                <input type="name" autocomplete="false" id="msgName" class="form-control mt-2" placeholder="Name..."
-                    onkeyup="saveUsername()">
+                <input type="email" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Email..." onkeyup="saveUsername()">
+                <input type="password" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Password..." onkeyup="saveUsername()">
                 <a class="btn btn-primary mt-2 float-right" onclick="checkUsername()">Done</a>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div id="register-screen" class="text-center" style="padding-left: 15%; padding-right: 15%; padding-top: 40vh; ">
+        <img src="/assets/lunar.png" style="width: 5%; height: 5%;">
+        <h1>Lunar</h1>
+        <div class="card">
+            <div class="card-body">
+                <input type="name" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Username..." onkeyup="saveUsername()">
+                <input type="email" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Email..." onkeyup="saveUsername()">
+                <input type="password" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Password..." onkeyup="saveUsername()">
+                <input type="password" autocomplete="off" id="msgName" class="form-control mt-2" placeholder="Confirm Password..." onkeyup="saveUsername()">
+                <a class="btn btn-primary mt-2 float-right" onclick="checkUsername()">Done</a>
+            </div>
+        </div>
+    </div>
+    <div id="chat-screen" class="container-fluid">
         <div class="row">
             <div class="col-sm col-lg-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled
-                            placeholder="Name..." onkeyup="saveUsername()">
-                        <a class="btn btn-primary mt-3"
-                            onclick="$(`#msgName`).val(``);localStorage.setItem(`name`, ``);checkUsername();">Change
+                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled placeholder="Name..." onkeyup="saveUsername()">
+                        <a class="btn btn-primary mt-3" onclick="$(`#msgName`).val(``);localStorage.setItem(`name`, ``);checkUsername();">Change
                             Username</a>
                         <script>
                             var saveUsername = () => {
@@ -66,16 +77,14 @@
             <div class="col-md-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="filterMessages" class="form-control mb-2"
-                            placeholder="Search the conversation...">
+                        <input type="text" id="filterMessages" class="form-control mb-2" placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
                         <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
                         <a class="btn btn-primary text-light" onclick="extensionAdd()">
                             Add
                         </a>
-                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
-                            class="align-right btn btn-primary">
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();" class="align-right btn btn-primary">
                             LunarEssentials
                         </a>
                     </div>
