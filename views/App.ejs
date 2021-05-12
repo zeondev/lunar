@@ -23,8 +23,7 @@
         <h1>Lunar</h1>
         <div class="card">
             <div class="card-body">
-                <input type="name" autocomplete="false" id="msgName" class="form-control mt-2" placeholder="Name..."
-                    onkeyup="saveUsername()">
+                <input type="name" autocomplete="false" id="msgName" class="form-control mt-2" placeholder="Name..." onkeyup="saveUsername()">
                 <a class="btn btn-primary mt-2 float-right" onclick="checkUsername()">Done</a>
             </div>
         </div>
@@ -34,10 +33,8 @@
             <div class="col-sm col-lg-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled
-                            placeholder="Name..." onkeyup="saveUsername()">
-                        <a class="btn btn-primary mt-3"
-                            onclick="$(`#msgName`).val(``);localStorage.setItem(`name`, ``);checkUsername();">Change
+                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled placeholder="Name..." onkeyup="saveUsername()">
+                        <a class="btn btn-primary mt-3" onclick="$(`#msgName`).val(``);localStorage.setItem(`name`, ``);checkUsername();">Change
                             Username</a>
                         <script>
                             var saveUsername = () => {
@@ -50,8 +47,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg mt-3" style="height: 96vh;">
-                <div class="card" style="height: 90%;">
+            <div class="col-lg mt-3 d-flex flex-column" style="height: 96vh;">
+                <div class="card align-self-stretch" style="height: 90%;">
                     <div class="card-body h-100 p-0 overflow-auto" id="scrollArea">
                         <ul id="msgList" class="list-group list-group-flush"></ul>
                     </div>
@@ -59,7 +56,8 @@
                 <div class="card mt-3 mb-3">
                     <div class="card-body h-100">
                         <form id="msgForm" class="align-bottom" action="">
-                            <input type="text" id="msgInput" class="form-control" autocomplete="off">
+                            <!--<input type="text" id="msgInput" class="form-control" autocomplete="off">-->
+                            <textarea name="msgInput" id="msgInput" class="msgTextarea form-control" rows="1" autocomplete="off" placeholder="Message"></textarea>
                         </form>
                     </div>
                 </div>
@@ -67,16 +65,14 @@
             <div class="col-md-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="filterMessages" class="form-control mb-2"
-                            placeholder="Search the conversation...">
+                        <input type="text" id="filterMessages" class="form-control mb-2" placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
                         <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
                         <a class="btn btn-primary text-light" onclick="extensionAdd()">
                             Add
                         </a>
-                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
-                            class="align-right btn btn-primary">
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();" class="align-right btn btn-primary">
                             LunarEssentials
                         </a>
                     </div>

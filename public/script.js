@@ -25,17 +25,47 @@ function checkUsername() {
     }
 }
 
+input.addEventListener("keydown", (e) => {
+    const keyCode = e.which || e.keyCode;
+    if (keyCode === 13 && !e.shiftKey) {
+        e.preventDefault();
+        if (username.value) {
+            if (input.value) {
+                socket.emit('message', username.value, input.value, ``);
+                input.value = '';
+            }
+        } else {
+            var item = document.createElement('li')
+            item.textContent = `Please add a name before chatting...`;
+            item.classList.add("list-group-item")
+            item.id = `-AddAName-`
+            item.classList.add("text-danger")
+            messages.appendChild(item);
+            document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
+        }
+    }
+    var currentRows = input.value.split("\n").length;
+    if (keyCode === 13 && e.shiftKey) {
+        currentRows++;
+    }
+    if (currentRows <= 5) {
+        input.rows = currentRows;
+    } else {
+        input.rows = 5;
+    }
+})
+
 var searchValue = "";
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     var WarningMessageConsoleLog1 = "background: red; color: white; font-size: x-large"
     var WarningMessageConsoleLog2 = "color: auto; font-size: large; margin-top: 5px;"
     console.log("%cHold up!\n%cDo not paste or enter anything in here. If someone has told you to paste something here, they may be trying to scam or hack you.\nIf you do know what you're doing, you can contribute to this project at https://github.com/zeondev/lunar/", WarningMessageConsoleLog1, WarningMessageConsoleLog2);
 
-    $("#filterMessages").on("keyup", function () {
+    $("#filterMessages").on("keyup", function() {
         searchValue = $(this).val().toLowerCase();
-        $("#msgList li").filter(function () {
+        $("#msgList li").filter(function() {
             var messageContentElement = this.querySelector("#messageContent")
             $(this).toggle($(messageContentElement).text().toLowerCase().indexOf(searchValue) > -1)
         });
@@ -51,25 +81,6 @@ item.id = `-welcometext-`
 messages.appendChild(item);
 document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
 
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (username.value) {
-        if (input.value) {
-            var d = new Date();
-            socket.emit('message', username.value, input.value, ``);
-            input.value = '';
-        }
-    } else {
-        var item = document.createElement('li')
-        item.textContent = `Please add a name before chatting...`;
-        item.classList.add("list-group-item")
-        item.id = `-AddAName-`
-        item.classList.add("text-danger")
-        messages.appendChild(item);
-        document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
-    }
-});
 socket.on('message', (usr, msg) => {
     var message = document.createElement('li')
     message.classList.add("list-group-item")
@@ -87,7 +98,7 @@ socket.on('message', (usr, msg) => {
 
     var messageContent = document.createElement('span')
     messageContent.id = "messageContent"
-    messageContent.innerHTML = msg
+    messageContent.innerHTML = msg.replaceAll("\n", "<br>")
     message.appendChild(messageContent)
 
     var messageTimeStamp = document.createElement("small")
@@ -105,6 +116,8 @@ socket.on('message', (usr, msg) => {
     document.querySelector("#scrollArea").scrollTop = document.querySelector("#scrollArea").scrollHeight
     twemoji.parse(document.body);
 });
+
+
 
 
 var checkTheme = () => {

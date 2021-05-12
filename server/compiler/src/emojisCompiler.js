@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const emojiData = JSON.parse(fs.readFileSync("../config/emojis.json", {
+const emojiData = JSON.parse(fs.readFileSync("server/compiler/config/emojis.json", {
     encoding: 'utf8',
     flag: 'r'
 }));
@@ -47,5 +47,5 @@ for (let i = 0; i < emojiData.length; i++) {
     })
 }
 
-fs.writeFileSync("../out/emojisData.js",
+fs.writeFileSync("server/compiler/out/emojisData.js",
     `const emojisData = ${JSON.stringify(emojis)};module.exports = emojisData;`)
