@@ -21,10 +21,15 @@
     <div class="addAName text-center" style="padding-left: 15%; padding-right: 15%; padding-top: 40vh; ">
         <img src="/assets/lunar.png" style="width: 5%; height: 5%;">
         <h1>Lunar</h1>
+        <h4>Login with your Zeon account</h4>
         <div class="card">
             <div class="card-body">
-                <input type="name" autocomplete="false" id="msgName" class="form-control mt-2" placeholder="Name..." onkeyup="saveUsername()">
-                <a class="btn btn-primary mt-2 float-right" onclick="checkUsername()">Done</a>
+                <input type="text" autocomplete="false" id="loginUsername" class="form-control mt-2"
+                    placeholder="Username..." onkeyup="saveUsername()">
+                <input type="password" autocomplete="false" id="loginPassword" class="form-control mt-2"
+                    placeholder="Password..." onkeyup="saveUsername()">
+                <a href="https://zeon.dev" class="float-left btn btn-primary mt-2">Make a Zeon account</a>
+                <a class="btn btn-primary mt-2 float-right" onclick="loginWithZeon()">Done</a>
             </div>
         </div>
     </div>
@@ -33,16 +38,39 @@
             <div class="col-sm col-lg-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled placeholder="Name..." onkeyup="saveUsername()">
-                        <a class="btn btn-primary mt-3" onclick="$(`#msgName`).val(``);localStorage.setItem(`name`, ``);checkUsername();">Change
-                            Username</a>
+                        <input type="name" autocomplete="false" id="msgNameDisplay" class="form-control mt-2" disabled>
+                        <a onclick="localStorage.name = ''; window.location = window.location;"
+                            class="btn btn-primary mt-2">Log out</a>
                         <script>
+                            var loginWithZeon = () => {
+                                $.getJSON(
+                                    `https://zeon.dev/api/users/?u=${$("#loginUsername").val()}&p=${$("#loginPassword").val()}`,
+                                    (data) => {
+                                        if (data.success == "1") {
+                                            localStorage.setItem("name",
+                                                `${data.username}`)
+                                            $("#msgNameDisplay").val(localStorage.getItem("name"))
+                                            checkUsername()
+                                            console.clear()
+                                            var WarningMessageConsoleLog1 =
+                                                "background: red; color: white; font-size: x-large"
+                                            var WarningMessageConsoleLog2 =
+                                                "color: auto; font-size: large; margin-top: 5px;"
+                                            console.log(
+                                                "%cHold up!\n%cDo not paste or enter anything in here. If someone has told you to paste something here, they may be trying to scam or hack you.\nIf you do know what you're doing, you can contribute to this project at https://github.com/zeondev/lunar/",
+                                                WarningMessageConsoleLog1, WarningMessageConsoleLog2);
+                                        } else {
+
+                                        }
+                                    })
+                            }
+
                             var saveUsername = () => {
                                 localStorage.setItem("name", `${$("#msgName").val()}`)
                                 $("#msgNameDisplay").val(localStorage.getItem("name"))
                             }
-                            saveUsername()
-                            $("#msgName").val(localStorage.getItem("name"))
+                            // saveUsername()
+                            // $("#msgName").val(localStorage.getItem("name"))
                         </script>
                     </div>
                 </div>
@@ -57,7 +85,8 @@
                     <div class="card-body h-100">
                         <form id="msgForm" class="align-bottom" action="">
                             <!--<input type="text" id="msgInput" class="form-control" autocomplete="off">-->
-                            <textarea name="msgInput" id="msgInput" class="msgTextarea form-control" rows="1" autocomplete="off" placeholder="Message"></textarea>
+                            <textarea name="msgInput" id="msgInput" class="msgTextarea form-control" rows="1"
+                                autocomplete="off" placeholder="Message"></textarea>
                         </form>
                     </div>
                 </div>
@@ -65,14 +94,16 @@
             <div class="col-md-auto mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" id="filterMessages" class="form-control mb-2" placeholder="Search the conversation...">
+                        <input type="text" id="filterMessages" class="form-control mb-2"
+                            placeholder="Search the conversation...">
                         <a onclick="switchTheme()" class="btn btn-primary text-light mb-2">Change Theme</a>
                         <h4 class="text-center mt-2">Plugins</h4>
                         <input type="text" id="addExtensionInput" class="mb-2 form-control" placeholder="Plugin URL">
                         <a class="btn btn-primary text-light" onclick="extensionAdd()">
                             Add
                         </a>
-                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();" class="align-right btn btn-primary">
+                        <a onclick="$('#addExtensionInput').val('/plugins/LunarEssentials/plugin.js'); extensionAdd();"
+                            class="align-right btn btn-primary">
                             LunarEssentials
                         </a>
                     </div>
