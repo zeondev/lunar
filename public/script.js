@@ -2,7 +2,7 @@ var socket = io('/')
 var messages = document.querySelector('#msgList');
 var form = document.querySelector("#msgForm")
 var input = document.querySelector('#msgInput');
-var username = document.querySelector('#msgName');
+var username = document.querySelector('#msgNameDisplay');
 
 
 $(".container-fluid").hide()
